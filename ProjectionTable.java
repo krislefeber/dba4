@@ -8,7 +8,7 @@ import java.util.*;
 
 public class ProjectionTable extends Table {
 
-    Table tab_projecting_on;
+    Table tab_projecting_on; // test
 
     /**
      * @param t - the table from which attributes are projected
