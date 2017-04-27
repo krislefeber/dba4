@@ -23,10 +23,12 @@ public class ProjectionTable extends Table {
 	attr_types = calculateProjectedAttributeTypes(attr_names);
     }
 
+    @Override
     public Table [] my_children () {
 	return new Table [] { tab_projecting_on };
     }
 
+    @Override
     public Table optimize() {
 	
 	// One of the projection optimizations is done to illustrate the technique

@@ -63,9 +63,9 @@ public abstract class Table {
 	}
 	System.out.println("");
 
-	for (int i = 0; i < attr_names.length; i++) {
-	    System.out.print(String.format("%15s", "----------"));
-	}
+        for (String attr_name : attr_names) {
+            System.out.print(String.format("%15s", "----------"));
+        }
 	System.out.println("");
 
 	ListIterator iterate_tuples = displayList.listIterator(0);

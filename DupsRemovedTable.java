@@ -18,7 +18,8 @@ public class DupsRemovedTable extends Table {
 
 	super("Removing duplicates from " + t.toString());
 	tab_dups_removed_from = t;
-
+        attr_names = t.attr_names;
+        attr_types = t.attr_types;
     }
 
     @Override
@@ -32,15 +33,20 @@ public class DupsRemovedTable extends Table {
 	return this;
     }	
 
+    @Override
     public ArrayList<Tuple> evaluate() {
-	ArrayList<Tuple> tuples_to_return = new ArrayList<Tuple>();
+	ArrayList<Tuple> tuples_to_return = new ArrayList<>();
+        
+        ArrayList<Tuple> array = tab_dups_removed_from.evaluate();
+        HashSet<Integer> hashes = new HashSet<>();
+        ListIterator iterate_tuples = array.listIterator(0);
 
-	// Here you need to add the correct tuples to tuples_to_return
-	// for this operation
-
-	// It should be done with an efficient algorithm based on
-	// sorting or hashing
-
+	while (iterate_tuples.hasNext()) {
+	    Tuple x = (Tuple) iterate_tuples.next();
+	    if (hashes.add(x.my_data.hashCode())) {
+		tuples_to_return.add(x);
+	    }
+	}
 	profile_intermediate_tables(tuples_to_return);
 	return tuples_to_return;
 

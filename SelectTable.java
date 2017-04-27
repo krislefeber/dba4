@@ -17,13 +17,13 @@ public class SelectTable extends Table {
      *
      */
     public SelectTable(Table t, Conditional c) {
-
 	super("Select on " + t.toString() + " on condition " + c.toString());
+        String s = c.toString();
 	tab_selecting_on = t;
 	select_cond = c;
-
-	attr_names = t.attrib_names();
-	attr_types = t.attrib_types();
+        
+	this.attr_names = t.attrib_names();
+	this.attr_types = t.attrib_types();
 	
     }
 
@@ -32,6 +32,13 @@ public class SelectTable extends Table {
     }
 
     public Table optimize() {
+        if(this.tab_selecting_on instanceof ProjectionTable) {
+            ProjectionTable parent = (ProjectionTable)this.tab_selecting_on;
+            Table[] child = this.tab_selecting_on.my_children();
+            this.tab_selecting_on = child[0];
+            parent.tab_projecting_on = this;
+            return parent;
+        }
 	return this;
     }
 
