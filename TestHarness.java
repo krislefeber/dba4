@@ -47,16 +47,16 @@ public class TestHarness {
 	tests[8] = BuildTest9();
 	tests[9] = BuildTest10();
 	tests[10] = BuildTest11();
-	tests[11] = null;	// Until you get join implemented, don't build this test
-	//	tests[11] = BuildTest12();
+	//tests[11] = null;	// Until you get join implemented, don't build this test
+		tests[11] = BuildTest12();
 	tests[12] = null;	// Until you get join implemented, don't build this test
-	//	tests[12] = BuildTest13();
+		tests[12] = BuildTest13();
 	tests[13] = null;	// Until you get join implemented, don't build this test
-	//	tests[13] = BuildTest14();
+		tests[13] = BuildTest14();
 	tests[14] = null;	// Until you get join implemented, don't build this test
-	//	tests[14] = BuildTest15();
+		tests[14] = BuildTest15();
 	tests[15] = null;	// Until you get join implemented, don't build this test
-	//	tests[15] = BuildTest16();
+		tests[15] = BuildTest16();
 	
 	menu();
 	i = in.nextInt();
