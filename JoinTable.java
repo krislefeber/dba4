@@ -78,17 +78,19 @@ public class JoinTable extends Table {
         // It should be done with an efficient algorithm based on
         // sorting or hashing
 
+        tuples_to_return = joinTables(this.first_join_tab, this.second_join_tab, matches);
         profile_intermediate_tables(tuples_to_return);
-        return joinTables(this.first_join_tab, this.second_join_tab, matches);
-
+        return tuples_to_return;
     }
 
     private ArrayList<Tuple> joinTables(Table left, Table right, CondLeaf[][] columnPairs) {
         ArrayList<Tuple> joinedTable = new ArrayList<>();
-        Iterator<Tuple> iter1 = left.evaluate().iterator();
+        ArrayList<Tuple> leftTuples = left.evaluate();
+        Iterator<Tuple> iter1 = leftTuples.iterator();
+        ArrayList<Tuple> rightTuples =right.evaluate();
         while (iter1.hasNext()) {
             Tuple leftTuple = (Tuple) iter1.next();
-            Iterator<Tuple> iter2 = right.evaluate().iterator();
+            Iterator<Tuple> iter2 = rightTuples.iterator();
             while (iter2.hasNext()) {
                 Tuple rightTuple = (Tuple) iter2.next();
                 boolean tablesMatch = true;

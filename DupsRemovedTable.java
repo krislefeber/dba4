@@ -29,8 +29,18 @@ public class DupsRemovedTable extends Table {
 
     @Override
     public Table optimize() {
-	// Right now no optimization is done -- you'll need to improve this
-	return this;
+	
+        // Right now no optimization is done -- you'll need to improve this
+	if(this.tab_dups_removed_from instanceof DupsRemovedTable)
+            return this.tab_dups_removed_from;
+        else if(this.tab_dups_removed_from instanceof ProjectionTable) {
+            ProjectionTable parent = (ProjectionTable)this.tab_dups_removed_from;
+            Table child = parent.tab_projecting_on;
+            this.tab_dups_removed_from = child;
+            parent.tab_projecting_on = this;
+            return parent;
+        }
+        return this;
     }	
 
     @Override
